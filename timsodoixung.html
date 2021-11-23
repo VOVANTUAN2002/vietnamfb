@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var input =prompt(); // đầu vào của input
+        var number = input;
+        var numberXD = 0;
+         while(number > 0){
+             //lấy số cuối % cho 10
+             var cs = number % 10;
+             //nhận kết quả rồi * với 10 và cộng với số vừa tách
+             numberXD = numberXD * 10 + cs;
+             //xáo số cuối;
+             number = Math.floor(number/10);
+         }
+
+         document.write("_đầu vào_" + input) // lấy số đầu vào của input
+         document.write("_số vào_" + numberXD) // lấy số vào của biến var numberXD
+            // vòng lặp 
+         if (numberXD == input) document.write("__là số đối xứng__")
+         else{
+            document.write("__không phải là số đối xứng")
+         }
+    </script>
+</body>
+</html>
