@@ -42,17 +42,21 @@
         this.setYear = function(year)
         {
             this.year = year;
-        }
-        let date = new MyDate(26, 12, 2020);
+            let date = new MyDate(26, 12, 2020);
         
-        let day = date.getDay(); //19
-        let month = date.getMonth();//05
-        let year = date.getYear();//2007
+       
+        }
+       
         console.log(day + "/" + month +"/" + year);
         date.setDay(26);
         date.setMonth(12);
         date.setYear(2020);
         console.log(day +"/" + Month +"/" + year);
+
+
+        let day = date.getDay(); //19
+        let month = date.getMonth();//05
+        let year = date.getYear();//2007
     </script>
 </body>
 </html>
