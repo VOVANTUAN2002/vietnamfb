@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trò chơi con mực</title>
+</head>
+<h1>đây là điện thoại của tôi </h1>
+<table id="table" style="width:300px;height:400px;background-color: black; " border="1px">
+<tr>
+    <td>1</td>
+</tr>
+<tr style="height:300px;">
+    <td>2
+
+
+        <p id="message"></p>
+    </td>
+</tr>
+<tr>
+    <td>3</td>
+</tr>
+
+</table>
+<body>
+    <table>
+        <th><button type="number" onclick="fullBatterypin('objMobile');">ĐIỆN THOẠI ĐẦY PIN</button></th>
+        <th><button type="number" onclick="sentMessage('objMobile');">SOẠN TIN NHẮN</button></th>
+        <th><button type="number" onclick="saveMessage()">LƯU TIN NHẮN SOẠN THẢO</button></th>
+        <th><button  type="number" onclick="battery3()">TIN NHẮN ĐÃ GỮI</button></th>
+        <th><button type="number"  onclick="theEndbatterypin()"  >ĐIỆN THOẠI ĐÃ TẮT</button></th>
+        <th><button type="number" onclick="battery5()">XAC PIN ĐIỆN THOẠI</button></th>
+    </table>
+</body>
+<script>
+    let Mobile = function () {
+        this.battery = 30 ;
+        this.tin_dang_soan = '';
+        this.tin_da_gui = [];
+        this.hop_thu_den = [];
+        this.trang_thai_dien_thoai = false;
+
+
+        this.kiemtradienthoai = function () {
+            
+            if (this.battery > 0) {
+
+                return true;
+            } else {
+                location.reload();
+                return false;
+            }
+        };
+        this.fullBatterypin = function () {
+           let table = document.getElementById("table");
+           table.style.backgroundColor="white";
+            //alert("điện thoại đầy bin" + this.battery++);
+           return this.battery = 100;//trả về giá trị
+        }
+        this.writeMessage = function () {
+
+
+            this.tin_dang_soan              = prompt("soạn tin nhắn soạn thảo"); // lấy thông tin ở thẻ prompt
+            message                         = document.getElementById("message"); // lấy id để biến message trở thành thẻ <p>
+            message.style.backgroundColor   = "blue";
+            message.style.color             = "white";
+            message.innerHTML               = this.tin_dang_soan;// hiển thị thẻ có prompt
+        }
+        this.sentMessage = function () {
+            this.tin_dang_soan              = prompt("soạn tin nhắn soạn thảo");
+            this.tin_da_gui[0]              = this.tin_dang_soan;//push vào cái mảng  this.tin_da_gui vị trí 0 là this.tin_dang_soan
+        }
+        this.theEndbatterypin = function () {
+            alert("điện thoại đang tắt" );
+            location.reload();
+
+         
+
+
+        }
+        this.phoneBatteryCharger = function () {
+            alert("xạc pin điện thoại " + this.battery++)
+        }
+
+    };
+    var objMobile = new Mobile(10, 100, 100, 100);
+
+    function fullBatterypin(objMobile) {
+        var objMobile = new Mobile(10, 100, 100, 100);
+        fullBattery = objMobile.fullBatterypin();
+        alert("pin đầy :" + objMobile.battery );//thông báo đầy pin
+        objMobile.fullBatterypin();//gọi để máy đọc hàm này bởi vì hàm đó ms khởi tạo nhưng chưa gọi nên máy chưa đọc
+    }
+    function sentMessage(objMobile) {
+        var objMobile = new Mobile(10, 100, 100, 100);
+        objMobile.writeMessage();//gọi để máy đọc hàm này bởi vì hàm đó ms khởi tạo nhưng chưa gọi nên máy chưa đọc
+        
+    }
+    function saveMessage() {
+        var objMobile = new Mobile(10, 100, 100, 100);
+        fullBattery = objMobile.fullBatterypin();
+        objMobile.sentMessage();
+        console.log(objMobile.tin_da_gui);
+    }
+    function theEndbatterypin() {
+        objMobile.theEndbatterypin();
+        
+    }
+    function battery5() {
+        objMobile.phoneBatteryCharger();
+    }
+        
+    
+    
+</script>
+</html>
