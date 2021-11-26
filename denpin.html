@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Den pin</title>
+	<style type="text/css">
+		ul li{
+		  list-style-type: none;
+		  padding: 60px;
+		  margin-left: 30px;
+		  margin-bottom: 30px;
+		}
+		ul{
+		  text-align: center;
+		  width: 30%;
+		  padding-top: 30px;
+		}
+		#green{
+		  background: red;
+		  border-radius: 200px;
+		}
+		.black {
+			background: black;
+			height: 189px;
+			width: 250px;
+			border-radius: 50px;
+		}
+	</style>
+</head>
+<body>
+	<p id="pin_status"></p>
+	<div class="black">
+	  <ul class="light">
+	    <li id="green"></li>
+	  </ul>
+	</div>
+	<input type="button" id="btnTurnOn" onclick="turnOnFlash()" value="TURN ON">
+	<input type="button" id="btnTurnOff" onclick="turnOffFlash()" value="TURN OFF">
+	<script type="text/javascript">
+		let Flash = function(){
+
+			this.battery 	= null;
+			this.status 	= false;
+
+			//phuong thuc
+			this.turnON = function(){
+				//kiểm tra viên pin có pin hay chưa
+
+
+				//kiểm tra viện pin có có năng lượng hay k 
+
+				//nếu cả hai điều kiện thỏa mản thì sẽ được thực thi bên dưới
+				this.status = true;
+			}
+
+			this.turnOFF = function(){
+				this.status = false;
+			}
+
+			this.light = function(){
+				if( this.status == true ){
+
+					//giảm năng lương của viên pin: decreaseEnergy
+					this.battery.decreaseEnergy();
+
+					//lắp giá trị viện pin
+					let pin_status = this.battery.getEnergy();
+
+					document.getElementById('green').style.opacity = 1;
+					document.getElementById('pin_status').innerHTML = pin_status;
+				}else{
+					document.getElementById('green').style.opacity = 0.5;
+				}
+				
+			}
+
+			//lắp viên pin vào đền
+			this.setBattery = function( ts_battery ){
+				this.battery = ts_battery;
+			}
+		}
+
+		let Battery = function(){
+			this.energy = 100;
+
+			//phương thúc giá trị thuộc tính  energy
+			this.setEnergy = function( ts_energy ){
+				this.energy = ts_energy;
+			}
+
+			//phương thưc trả  về thuộc tính  energy
+			this.getEnergy = function(){
+				return this.energy;
+			}
+
+			//phương thưc giảm năng lượng
+			this.decreaseEnergy = function(){
+				this.energy -= 1;
+			}
+		}
+
+		// khởi tạo đối tượng  Battery
+		let objBattery = new Battery();
+		
+
+		//khởi tạo đối tượng flash
+		let objFlash = new Flash();
+
+		//đưa đền pin vào đền
+		objFlash.setBattery(objBattery);
+
+		
+
+
+		console.log( objBattery );
+
+		function turnOnFlash(){
+			//bật đèn
+			objFlash.turnON();
+
+			//chiếu sáng
+			objFlash.light();
+
+
+		}
+
+		function turnOffFlash(){
+			//bật đền
+			objFlash.turnOFF();
+
+			//chiếu sáng
+			objFlash.light();
+            
+		}
+	</script>
+</body>
+</html>
